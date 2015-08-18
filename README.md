@@ -42,7 +42,7 @@
       - date_added
       - date_modified
       - priority_level (id)
-    * `priority_levels`
+    * priority_levels
       - id
-    - name
+      - name
         
