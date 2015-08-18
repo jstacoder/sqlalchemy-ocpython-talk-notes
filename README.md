@@ -1,6 +1,6 @@
-##SqlAlchemy Notes
+#SQLAlchemy <small>Notes</small>
 
-## part1: Core
+## Part1: Core
   - explanation, reasons to use
   - sqlalchemy engine
   - sql type engine
@@ -9,9 +9,10 @@
      * insert
      * update 
      * functions
+  - you can use functions or classes, functional or classical programming
   - examples / praticle use
 
-## part2: Orm
+## Part2: Orm
   - explanation, reasons to use
   - db sessions
   - ext.declarative
@@ -22,27 +23,33 @@
      * automap_base
   - examples / practicle use
 
-## part3: example app
+## Part3: Example App
  
   - core version
-  - orm version 
+    - build db with expression language, make a few queries
+    
+  - orm version
+    - build db with orm, make a few queries
+    
+  - example db structure 
 
     * projects
-      - id
-      - name
-      - tasks
-      - due_date
-      - date_added
-      - date_modified
+      - id int
+      - name varchar      
+      - due_date date
+      - date_added datetime
+      - date_modified datetime
+      
     * tasks
-      - id
-      - name             
-      - project (id)
-      - due_date
-      - date_added
-      - date_modified
-      - priority_level (id)
+      - id int
+      - name  varchar           
+      - project_(id) int
+      - due_date date
+      - date_added datetime
+      - date_modified datetime
+      - priority_level_(id) int
+      
     * priority_levels
-      - id
-      - name
+      - id int 
+      - name varchar
         

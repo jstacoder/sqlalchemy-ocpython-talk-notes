@@ -1,32 +1,11 @@
 import os
 
-#os.environ['DATABASE_URI'] = 'sqlite:///memory.db'
-
 from bs4 import Tag
 from csv import writer
 import sqlalchemy as sa
 import datetime
 from example_engine import engine
-'''
-        * projects
-            - id
-            - name
-            - tasks
-            - due_date
-            - date_added
-            - date_modified
-        * tasks
-            - id
-            - name             
-            - project (id)
-            - due_date
-            - date_added
-            - date_modified
-            - priority_level (id)
-        * priority_levels
-            - id
-            - name
-'''     
+    
 meta = sa.MetaData()
 
 id_column = lambda: sa.Column('id',sa.Integer,primary_key=True)
@@ -142,15 +121,23 @@ sql = '''select projects.name as project, tasks.due_date as due_on, tasks.name a
             on projects.id = projects_tasks.project_id
         '''
 
-stmt = tasks.select([projects.c.name,tasks.c.due_date,tasks.c.name]).join(projects_tasks,tasks.c.id==projects_tasks.c.task_id).join(projects,projects.c.id==projects_tasks.c.project_id)
+#stmt = tasks.select([projects.c.name,tasks.c.due_date,tasks.c.name]).join(projects_tasks,tasks.c.id==projects_tasks.c.task_id).join(projects,projects.c.id==projects_tasks.c.project_id)
+
+cols = [projects.c.name,tasks.c.due_date,tasks.c.name]
+sel = select(cols)
+
+stmt = sel.select_from(
+    tasks.join(projects_tasks).join(projects)
+)
 
 #w = writer(open('tst.csv','w'))
+print sql
 results = engine.execute(sql)
 print results.fetchall()
 
+print stmt
 results = engine.execute(stmt)
 print results.fetchall()
 
 #w.writerow(results.keys())
 #w.writerows(results.fetchall())
-
