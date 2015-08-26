@@ -2,9 +2,7 @@ import datetime
 import os
 from sqlalchemy.ext.declarative import declarative_base,declared_attr
 from sqlalchemy import Column,String,Integer,Date,orm,create_engine,func,Boolean,ForeignKey
-from task_cmd_api import run_argv
-from task_cmd_ui import _print_project
-from seed import seed_data
+from task_cmd_api import run_argv, _print_project, seed_data
 
 base = declarative_base()
 #engine = create_engine('sqlite:///x.db')

@@ -1,6 +1,5 @@
 from sqlalchemy import Table,Column,select,insert,String,Integer,Date,ForeignKey,MetaData,func,Boolean,null,Text,delete
-from task_cmd_api import run_argv
-from task_cmd_ui import _print_project
+from task_cmd_api import run_argv, _print_project, seed_data
 import datetime
 import os
 
@@ -14,7 +13,6 @@ projects = Table('projects',meta,
     id_col(),
     date_col('date_added'),
     Column('name',String(255),unique=True,nullable=False),
-    Column('archived',Boolean,default=False),
 )
 
 proj_select = select([projects.c.name])
@@ -78,7 +76,6 @@ action_funcs =  [
 
 def print_project(name):
     _print_project(name,get_proj_tasks(name))
-
 
 def main():
     if os.environ.get('SQL_SEED'):
